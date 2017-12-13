@@ -1,6 +1,8 @@
 'use strict';
 require('./check-versions')();
 
+const api = require('../crossw-server/api');
+
 const config = require('../config');
 if (!process.env.NODE_ENV) {
     process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV);
@@ -67,6 +69,9 @@ app.use(devMiddleware);
 // serve pure static assets
 const staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory);
 app.use(staticPath, express.static('./static'));
+
+// enhance app with shared api
+api(app, path.join(__dirname, '..', 'crossw-server', 'puzzles'));
 
 const uri = 'http://localhost:' + port;
 

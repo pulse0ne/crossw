@@ -13,14 +13,13 @@
 
 <script type="text/ecmascript-6">
     import Row from './Row';
+    import { range } from '../utils';
 
     const rowSplitter = (arr, width, height) => {
-        const rows = [];
-        for (let r = 0; r < height; r++) {
+        return range(height).map(r => {
             const c = r * width;
-            rows.push(arr.slice(c, c + width));
-        }
-        return rows;
+            return arr.slice(c, c + width);
+        });
     };
 
     export default {
@@ -57,5 +56,6 @@
         border: 1px solid black;
         border-right-width: 2px;
         border-bottom-width: 2px;
+        max-width: 800px;
     }
 </style>

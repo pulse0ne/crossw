@@ -6,12 +6,22 @@
 </template>
 
 <script type="text/ecmascript-6">
+    import { debounce } from '../utils';
+
     export default {
         mounted: function () {
-            this.$nextTick(() => {
+            const resizeCell = () => {
                 this.$el.style.height = `${this.$el.offsetWidth}px`;
                 this.$el.style.fontSize = `${this.$el.offsetWidth * 0.65}px`;
+            };
+            this.resizeListener = debounce(resizeCell, 200);
+            this.$nextTick(() => {
+                resizeCell();
+                window.addEventListener('resize', this.resizeListener, { passive: true });
             });
+        },
+        beforeDestroy: function () {
+            window.removeEventListener('resize', this.resizeListener, { passive: true });
         },
         props: {
             cellData: Object,
@@ -52,7 +62,7 @@
     }
 
     .cw-cell.in-row {
-        background: lightblue;
+        background: #bde9f7;
     }
 
     .cw-cell-number {

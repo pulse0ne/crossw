@@ -16,6 +16,9 @@ module.exports = {
         'generator-star-spacing': 0,
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
         'semi': ['error', 'always'],
-        'indent': ['error', 4]
+        'indent': ['error', 4],
+        'space-infix-ops': 0,
+        'no-return-assign': 0,
+        'spaced-comment': 0
     }
 };
