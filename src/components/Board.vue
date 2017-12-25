@@ -7,7 +7,8 @@
             :row-index="i"
             :on-cell-clicked="cellClicked"
             :selected-cells="splitSelectedCells()[i]"
-            :input-data="splitInputDataRows()[i]" />
+            :input-data="splitInputDataRows()[i]"
+            :check-answers="checkAnswers" />
     </div>
 </template>
 
@@ -30,7 +31,8 @@
             boardData: Object,
             onCellClicked: Function,
             selectedCells: Array,
-            inputData: Array
+            inputData: Array,
+            checkAnswers: Boolean
         },
         computed: {
             splitRows: function () {

@@ -11,7 +11,7 @@
                 <h4>{{ m.month }}</h4>
                 <div class="day-container">
                     <div v-for="d in m.days" class="day-wrapper" @click="selectPuzzle(d.file)">
-                        <span class="day" v-bind:class="{ 'complete': d.complete, 'in-progress': d.inProgress }">
+                        <span class="day" v-bind:class="{ 'complete': d.complete, 'in-progress': d.inProgress, 'last': d.last }">
                             {{ d.day }}
                         </span>
                     </div>
@@ -41,15 +41,15 @@
     export default {
         data: function () {
             return {
-                yearSelection: '2017',
-                completed: ['2017-03-29.json'],
-                inProgress: ['2017-08-03.json']
+                yearSelection: '2017'
             };
         },
         props: {
+            completed: Array,
+            inProgress: Array,
+            lastPuzzle: String,
             onPuzzleChosen: Function,
-            puzzleFiles: Array/*,
-            completed: Array*/
+            puzzleFiles: Array
         },
         computed: {
             puzzles: function () {
@@ -72,7 +72,8 @@
                         day: d,
                         file: i,
                         complete: c,
-                        inProgress: !c && self.inProgress.includes(i)
+                        inProgress: !c && self.inProgress.includes(i) && self.lastPuzzle !== i,
+                        last: !c && self.lastPuzzle === i
                     });
                     return a;
                 }, {});
@@ -142,7 +143,7 @@
     }
 
     .day {
-        border-radius: 50%;
+        border-radius: 10%;
     }
 
     .complete {
@@ -151,6 +152,10 @@
 
     .in-progress {
         background-color: #e7e99e;
+    }
+
+    .last {
+        background-color: #bde9f7;
     }
 
 </style>

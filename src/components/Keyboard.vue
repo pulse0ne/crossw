@@ -57,8 +57,8 @@
     .keyboard-button {
         background-color: white;
         border-radius: 0.5em;
-        padding: 5px 10px;
-        margin: 0 5px;
+        padding: 10px 12px;
+        margin: 0 2px;
         box-shadow: 0 1px 1px black;
     }
 

@@ -1,6 +1,6 @@
 <template>
     <div class="cw-cell" v-bind:class="{ filled: cellData.num < 0, selected: selected == 2, 'in-row': selected == 1 }" @click="cellClicked">
-        <span>{{ value }}</span>
+        <span :style="valueStyle">{{ value }}</span>
         <span class="cw-cell-number" v-if="cellData.num > 0">{{ cellData.num }}</span>
     </div>
 </template>
@@ -28,12 +28,22 @@
             cellIndex: Number,
             onCellClicked: Function,
             selected: Number,
-            value: String
+            value: String,
+            checkAnswers: Boolean
         },
         methods: {
             cellClicked: function () {
                 if (this.cellData.num >= 0) {
                     this.onCellClicked();
+                }
+            }
+        },
+        computed: {
+            valueStyle: function () {
+                if (this.value && this.checkAnswers && this.cellData.solution !== this.value) {
+                    return { color: 'red' };
+                } else {
+                    return { color: 'inherit' };
                 }
             }
         }

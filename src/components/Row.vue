@@ -7,7 +7,8 @@
             :cell-index="i"
             :on-cell-clicked="clickHandlers[i]"
             :selected="selectedCells[i]"
-            :value="inputData[i]" />
+            :value="inputData[i]"
+            :check-answers="checkAnswers" />
     </div>
 </template>
 
@@ -23,7 +24,8 @@
             rowIndex: Number,
             onCellClicked: Function,
             selectedCells: Array,
-            inputData: Array
+            inputData: Array,
+            checkAnswers: Boolean
         },
         computed: {
             clickHandlers: function () {

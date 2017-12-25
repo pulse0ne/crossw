@@ -5,13 +5,13 @@
             <div class="menu-entry" @click="openSelectView()">
                 <i class="fa fa-folder-open"></i>
             </div>
-            <div class="menu-entry">
+            <div class="menu-entry disabled">
                 <i class="fa fa-list"></i>
             </div>
-            <div class="menu-entry">
+            <div class="menu-entry" @click="openPuzzleMenu()">
                 <i class="fa fa-life-ring"></i>
             </div>
-            <div class="menu-entry">
+            <div class="menu-entry" @click="openInfoView()">
                 <i class="fa fa-info"></i>
             </div>
         </div>
@@ -29,9 +29,12 @@
             };
         },
         props: {
-            test: Function,
             openSelectView: Function,
-            clue: String
+            openListView: Function,
+            openInfoView: Function,
+            openPuzzleMenu: Function,
+            clue: String,
+            checkAnswers: Boolean
         }
     };
 </script>
@@ -59,8 +62,8 @@
     }
 
     .menu-entry {
-        margin-right: 48px;
         font-size: 16px;
+        text-align: center;
     }
 
     .menu-button {
@@ -68,5 +71,9 @@
         color: black;
         padding-left: 12px;
         font-size: 16px;
+    }
+
+    .disabled {
+        color: gray;
     }
 </style>

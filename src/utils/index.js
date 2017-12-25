@@ -66,9 +66,6 @@ export function localStorageProxy (key, defaultValue={}) {
     return new Proxy(stored, {
         set: function (target, name, value) {
             target[name] = value;
-            console.log(target);
-            console.log(name);
-            console.log(value);
             window.localStorage.setItem(key, JSON.stringify(target));
             return true;
         }
